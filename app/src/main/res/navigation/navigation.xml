@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginInFragment">
+
+    <fragment
+        android:id="@+id/loginInFragment"
+        android:name="com.example.sitectest.ui.loginin.LoginInFragment"
+        android:label="fragment_login_in"
+        tools:layout="@layout/fragment_login_in" >
+        <action
+            android:id="@+id/action_loginInFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.sitectest.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
