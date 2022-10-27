@@ -109,5 +109,6 @@ class AppModule {
 
 	@Singleton
 	@Provides
-	fun provideRepository(localDataSource: DatabaseAppDao, remoteDataSource: RemoteDataSource) = MainRepository(localDataSource, remoteDataSource)
+	fun provideRepository(localDataSource: DatabaseAppDao, remoteDataSource: RemoteDataSource) =
+		MainRepository(localDataSource, remoteDataSource)
 }

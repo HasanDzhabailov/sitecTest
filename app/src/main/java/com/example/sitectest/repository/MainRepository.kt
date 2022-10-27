@@ -6,8 +6,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MainRepository @Inject constructor(private val localDataSource: DatabaseAppDao,private val remoteDataSource: RemoteDataSource) {
-	suspend fun getUsersList(){
-		remoteDataSource.getUsersList()
-	}
+class MainRepository @Inject constructor(
+	private val localDataSource: DatabaseAppDao,
+	private val remoteDataSource: RemoteDataSource,
+) {
+	suspend fun getUsersList() = remoteDataSource.getUsersList()
+	suspend fun checkAuth() = remoteDataSource.checkAuth()
 }

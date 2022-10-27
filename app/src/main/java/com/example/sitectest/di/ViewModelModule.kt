@@ -13,7 +13,7 @@ import dagger.multibindings.IntoMap
 
 @Suppress("unused")
 @Module
-abstract class  ViewModelModule {
+abstract class ViewModelModule {
 
 	@Binds
 	@IntoMap
@@ -24,7 +24,6 @@ abstract class  ViewModelModule {
 	@IntoMap
 	@ViewModelKey(ProfileViewModel::class)
 	abstract fun bindAddExpensesViewModel(profileViewModel: ProfileViewModel): ViewModel
-
 
 
 	@Binds

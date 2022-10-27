@@ -5,7 +5,7 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(
 	private val apiServiceGetListUsers: ApiServiceGetListUsers,
 	private val apiServiceGetPassword: ApiServiceGetPassword,
-): BaseDataSource() {
+) : BaseDataSource() {
 	private val imei = "111111111111111"
 	suspend fun getUsersList() = getResult { apiServiceGetListUsers.getListUsers(imei) }
 

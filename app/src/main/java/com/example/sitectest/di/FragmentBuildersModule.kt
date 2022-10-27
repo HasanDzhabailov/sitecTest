@@ -1,7 +1,6 @@
 package com.example.sitectest.di
 
 
-
 import com.example.sitectest.ui.loginin.LoginInFragment
 import com.example.sitectest.ui.profile.ProfileFragment
 import dagger.Module
