@@ -17,6 +17,7 @@ import com.example.sitectest.databinding.FragmentLoginInBinding
 import com.example.sitectest.di.Injectable
 import com.example.sitectest.utils.autoCleared
 import com.example.sitectest.utils.hideKeyboard
+import com.google.android.material.textfield.TextInputLayout
 import javax.inject.Inject
 
 
@@ -26,6 +27,41 @@ class LoginInFragment : Fragment(), Injectable {
 
 	private var binding by autoCleared<FragmentLoginInBinding>()
 	private lateinit var loginInViewModel: LoginInViewModel
+
+	private fun setupObserverValidationFilledFields(
+		selectUser: TextInputLayout,
+		textFieldPassword: TextInputLayout,
+		viewCloseKeyBoard: View,
+	) {
+		loginInViewModel.code.observe(viewLifecycleOwner, Observer { code ->
+			var checkText =
+				TextUtils.isEmpty(selectUser.editText!!.text) && TextUtils.isEmpty(
+					textFieldPassword.editText!!.text.toString())
+
+			if (checkText) {
+				selectUser.error = requireContext().getString(R.string.error_text_field)
+				textFieldPassword.error =
+					requireContext().getString(R.string.error_text_field)
+			} else if (code != textFieldPassword.editText!!.text.toString()) {
+				selectUser.isErrorEnabled = false
+				textFieldPassword.error =
+					requireContext().getString(R.string.error_auth_user)
+			} else {
+				selectUser.isErrorEnabled = false
+				textFieldPassword.isErrorEnabled = false
+				textFieldPassword.clearFocus()
+				selectUser.clearFocus()
+				viewCloseKeyBoard.hideKeyboard()
+				loginInViewModel.usersListLiveData.value!!.usersList.map { user ->
+					if (user.user == selectUser.editText!!.text.toString()) {
+						loginInViewModel.insertSuccessAuthUser(user.uid, user.user)
+					}
+				}
+				this.findNavController()
+					.navigate(LoginInFragmentDirections.actionLoginInFragmentToProfileFragment())
+			}
+		})
+	}
 
 	private fun setupObserver() {
 		loginInViewModel.getUserList()
@@ -43,7 +79,6 @@ class LoginInFragment : Fragment(), Injectable {
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?,
 	): View? {
-		// Inflate the layout for this fragment
 		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_in, container, false)
 		return binding.root
 	}
@@ -52,50 +87,16 @@ class LoginInFragment : Fragment(), Injectable {
 		super.onViewCreated(view, savedInstanceState)
 		loginInViewModel =
 			ViewModelProvider(this, viewModelFactory)[LoginInViewModel::class.java]
-
-
 		binding.also { b ->
-
 			b.loginInViewModel = loginInViewModel
 			b.lifecycleOwner = viewLifecycleOwner
 			val selectUser = b.usersList
 			val textFieldPassword = b.TextFieldPassword
-
 			b.loginIn.setOnClickListener() {
-				var checkAuth: Boolean =
-					loginInViewModel.onClick(textFieldPassword.editText!!.text.toString());
-				var checkText = TextUtils.isEmpty(selectUser.editText!!.text) || TextUtils.isEmpty(
-					textFieldPassword.editText!!.text.toString())
-
-				if (checkText) {
-					selectUser.error = requireContext().getString(R.string.error_text_field)
-					textFieldPassword.error = requireContext().getString(R.string.error_text_field)
-				}
-				else if(!checkText && !checkAuth){
-					selectUser.isErrorEnabled = false
-					textFieldPassword.error = requireContext().getString(R.string.error_auth_user)
-				}
-				else{
-					selectUser.isErrorEnabled = false
-					textFieldPassword.isErrorEnabled = false
-					textFieldPassword.clearFocus()
-					selectUser.clearFocus()
-					it.hideKeyboard()
-					this.findNavController().navigate(LoginInFragmentDirections.actionLoginInFragmentToProfileFragment())
-				}
-
-//			Log.d("testt",
-//				loginInViewModel.onClick(binding.textSumExpense.text.toString()).toString())
-
+				loginInViewModel.passwordCheck()
+				setupObserverValidationFilledFields(selectUser, textFieldPassword, it)
 			}
-
 		}
-
-
-
-
 		setupObserver()
 	}
-
-
 }

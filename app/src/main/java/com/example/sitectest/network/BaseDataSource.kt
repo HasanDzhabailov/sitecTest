@@ -1,6 +1,5 @@
 package com.example.sitectest.network
 
-import android.util.Log
 import com.example.sitectest.utils.Resource
 import retrofit2.Response
 import timber.log.Timber
@@ -12,9 +11,7 @@ abstract class BaseDataSource {
 			val response = call()
 			if (response.isSuccessful) {
 				val body = response.body()
-
 				if (body != null) {
-					Log.d("ttt",response.toString())
 					return Resource.success(body)
 				}
 			}

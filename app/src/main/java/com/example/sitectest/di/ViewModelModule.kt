@@ -3,7 +3,7 @@ package com.example.sitectest.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.sitectest.ui.loginin.LoginInViewModel
-import com.example.sitectest.ui.profile.ProfileViewModel
+import com.example.sitectest.ui.users.UsersAuthViewModel
 import com.example.sitectest.viewmodel.ViewModelFactory
 
 
@@ -22,8 +22,8 @@ abstract class ViewModelModule {
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(ProfileViewModel::class)
-	abstract fun bindAddExpensesViewModel(profileViewModel: ProfileViewModel): ViewModel
+	@ViewModelKey(UsersAuthViewModel::class)
+	abstract fun bindAddExpensesViewModel(usersAuthViewModel: UsersAuthViewModel): ViewModel
 
 
 	@Binds

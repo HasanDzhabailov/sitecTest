@@ -2,7 +2,7 @@ package com.example.sitectest.di
 
 
 import com.example.sitectest.ui.loginin.LoginInFragment
-import com.example.sitectest.ui.profile.ProfileFragment
+import com.example.sitectest.ui.users.UsersAuthFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -10,9 +10,9 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBuildersModule {
 	@ContributesAndroidInjector
-	abstract fun contributeHomeFragmentFragment(): LoginInFragment
+	abstract fun contributeLoginInFragment(): LoginInFragment
 
 	@ContributesAndroidInjector
-	abstract fun contributeAddExpensesFragment(): ProfileFragment
+	abstract fun contributeUsersAuthFragment(): UsersAuthFragment
 
 }

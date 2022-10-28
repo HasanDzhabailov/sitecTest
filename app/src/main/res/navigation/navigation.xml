@@ -16,7 +16,13 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.sitectest.ui.profile.ProfileFragment"
+        android:name="com.example.sitectest.ui.users.UsersAuthFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_users_auth" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginInFragment"
+            app:destination="@id/loginInFragment"
+            app:popUpTo="@id/loginInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
