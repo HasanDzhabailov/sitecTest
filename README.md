@@ -18,7 +18,16 @@
 <li> OkHTTP</li>
 <li> Gson</li>
 </ul>
+<div align="center"">
 
+[untitled.webm](https://user-images.githubusercontent.com/51163032/198988589-ea596be5-7b62-4050-90af-014d3c159346.webm)
+
+
+
+
+[11.webm](https://user-images.githubusercontent.com/51163032/198989511-3c5f4962-0ec0-433e-a6b9-cb036883bba6.webm)
+
+</div>
 <h2>Исходные данные</h2>
 <p>
 На сервере опубликован HTTP сервис в базе 1С </br>
