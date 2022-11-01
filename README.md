@@ -24,8 +24,9 @@
 
 
 
+[ww.webm](https://user-images.githubusercontent.com/51163032/199258220-2ac8f132-7821-456e-8e48-9d11cbe742db.webm)
 
-[11.webm](https://user-images.githubusercontent.com/51163032/198989511-3c5f4962-0ec0-433e-a6b9-cb036883bba6.webm)
+
 
 </div>
 <h2>Исходные данные</h2>
