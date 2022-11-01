@@ -35,13 +35,9 @@ class LoginInFragment : Fragment(), Injectable {
 	) {
 		loginInViewModel.code.observe(viewLifecycleOwner, Observer { code ->
 			var checkText =
-				TextUtils.isEmpty(selectUser.editText!!.text) && TextUtils.isEmpty(
-					textFieldPassword.editText!!.text.toString())
-
+				TextUtils.isEmpty(selectUser.editText!!.text)
 			if (checkText) {
 				selectUser.error = requireContext().getString(R.string.error_text_field)
-				textFieldPassword.error =
-					requireContext().getString(R.string.error_text_field)
 			} else if (code != textFieldPassword.editText!!.text.toString()) {
 				selectUser.isErrorEnabled = false
 				textFieldPassword.error =
